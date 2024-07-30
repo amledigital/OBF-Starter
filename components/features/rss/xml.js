@@ -14,7 +14,7 @@ const { fragment } = require('xmlbuilder2')
 
 
 /**
- * @description filterElementArrayBySlug takes in a tag array and filters it by the el 
+ * @description filterElementArrayBySlug takes in an array of objects and filters it by element[index][key] = value 
  * @param {Array} element - an array of objects
  * @param {string} key - the object key you want to match the filter on
  * @param {value} string - the value you want to match the filter on
@@ -23,9 +23,7 @@ const { fragment } = require('xmlbuilder2')
 
 const filterElementArrayBySlug = function(element=[]) {
     return function(key, value) {
-
         let hasPushAlertTag = element.filter(el => el?.[key] === value)
-
        if (typeof hasPushAlertTag !== "undefined" && hasPushAlertTag.length > 0) {
         return 1
        }
