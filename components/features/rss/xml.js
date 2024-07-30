@@ -12,6 +12,29 @@ const jmespath = require('jmespath')
 const { decode } = require('he')
 const { fragment } = require('xmlbuilder2')
 
+
+/**
+ * @description filterElementArrayBySlug takes in a tag array and filters it by the el 
+ * @param {Array} element - an array of objects
+ * @param {string} key - the object key you want to match the filter on
+ * @param {value} string - the value you want to match the filter on
+ * @returns int - returns 1 if it finds something, returns 0 if it doesn't
+ */
+
+const filterElementArrayBySlug = function(element=[]) {
+    return function(key, value) {
+
+        let hasPushAlertTag = element.filter(el => el?.[key] === value)
+
+       if (typeof hasPushAlertTag !== "undefined" && hasPushAlertTag.length > 0) {
+        return 1
+       }
+       return 0
+
+    }
+}
+
+
 const rssTemplate = (
     elements,
     {
@@ -144,9 +167,10 @@ const rssTemplate = (
                 // hack for push alerts
                 //
 
+                let filterTags = filterElementArrayBySlug(s?.taxonomy?.tags)
 
 
-                let canPush = s?.taxonomy?.tags?.filter(tag => tag?.slug === "push-alert")?.length > 0
+                
 
 
                 return {
@@ -205,7 +229,7 @@ const rssTemplate = (
                     ...(includePromo && img && img.length < 2 && { '#2': img }),
                     // ...(s?.promo_items?.lead_art?.type==='video' && { lead_video_embed: { $: s.promo_items.lead_art.embed_html }}),
                     ...(s?.promo_items?.lead_art?.type === 'video' && { lead_video_id: s.promo_items.lead_art._id }),
-                    pugpig_post_allow_automated_push: (canPush ? 1 : 0),
+                    pugpig_post_allow_automated_push: filterTags('slug','push-alert').toString()
                 }
             }),
         },
