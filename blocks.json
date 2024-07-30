@@ -29,27 +29,23 @@
   "values": {
     "default": {
       "siteProperties": {
-        "feedDomainURL": "http://localhost",
-        "resizerURL": "http://localhost/resizer",
-        "feedTitle": "Outbound Feeds",
+        "feedDomainURL": "https://www.9and10news.com",
+        "resizerURL": "https://www.9and10news.com/resizer/v2",
+        "feedTitle": "9&10 News Feeds",
         "feedLanguage": "en"
       }
     },
     "sites": {
-      "website1": {
+      "910news": {
         "siteProperties": {
-          "feedDomainURL": "https://www.website1.com",
-          "resizerURL": "https://www.website1.com/resizer",
-          "feedTitle": "wwebsite 1",
-          "feedLanguage": "en"
-        }
-      },
-      "website2": {
-        "siteProperties": {
-          "feedDomainURL": "https://www.website2.com",
-          "resizerURL": "https://www.website2.com/resizer",
-          "feedTitle": "website 2",
-          "feedLanguage": "es"
+          "feedDomainURL": "https://www.9and10news.com",
+          "feedTitle": "9&10 News Feeds",
+          "feedLanguage": "en",
+          "resizerURLs": {
+                "910mediagroup-outboundfeeds-sandbox": "https://910mediagroup-910news-sandbox.web.arc-cdn.net/resizer/v2",
+                "910mediagroup-outboundfeeds": "https://910mediagroup-910news-prod.web.arc-cdn.net/resizer/v2",
+                "localhost": "https://910mediagroup-910news-sandbox.web.arc-cdn.net/resizer/v2"
+          }
         }
       }
     }
