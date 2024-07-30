@@ -18,7 +18,7 @@ const { fragment } = require('xmlbuilder2')
  * @param {Array} element - an array of objects
  * @param {string} key - the object key you want to match the filter on
  * @param {value} string - the value you want to match the filter on
- * @returns int - returns 1 if it finds something, returns 0 if it doesn't
+ * @returns {int} - 1 if the value is in the array, 0 if it is not
  */
 
 const filterElementArrayBySlug = function(element=[]) {
@@ -119,20 +119,7 @@ const rssTemplate = (
                 },
             }),
 
-            // the way push alerts works
-            // is in the canonical url service
-            // there is a rule set up to generate a query param
-            // if the label.push_alert.text === "true"
-            // but we don't actually need that as a part of the url
-            // so we can just use string.replace to remove it
-            // because pugpig does not recommend having query params in the urls
-            // so for the url, we remove the query param, but to trigger a push, we need to have it
-            // the reason it is done this way is because I was never able to easily
-            // expose s.label.push_alert.text in the content source
-            // I could use source_include in the content source params
-            // to actually fetch the label, but the server wouldn't read it
-            // and I believe this is because of other queryable fields documentation
-            // where only label.basic is expoed
+
 
             item: elements.map((s) => {
                 let author, body, category
@@ -164,6 +151,9 @@ const rssTemplate = (
 
                 // hack for push alerts
                 //
+                // push alerts are just the 'push-alert' tag assigned to the article.  
+            // we filter for that tag, and if the filtered array length is greater than 0
+            // we set the push alert tag in xml
 
                 let filterTags = filterElementArrayBySlug(s?.taxonomy?.tags)
 
