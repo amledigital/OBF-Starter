@@ -1,3 +1,15 @@
+# 910 News Notes
+
+1. most of the business logic is under features/rss/xml.js
+2. you might need to hop into utils to fix some random customizations
+3. If there are any issues with resizer v2, the original developer actually bypassed all of the resizer urls and just passed in the raw urls.  I added them back in because we were sending 4k images to the rss feed in the app and they were ingesting them that way.  
+4. I was never able to get resizer V2 working locally, but deployed it seems to work and hydrate the auth token
+5. I had to manually set the resizer url in blocks.json to the environment I am deploying to
+    - for example, the default blocks.json config needs to be set to the environment you want to deploy to e.g. sandbox to sandox, then update to deploy to prod
+6. I tried many different techniques to get automated push alerts to work.  I ended on using tags.  OBF doesn't correcty hydrate label.push_alert on the server side and I was never able to figure out how to resolve that issue.  I was able to create a work around using the canonical URL service and passing a query param flag `?allow_push=true` if that label was set to true.  But the canonical url service doesn't allow that functionality and only regards query params that are used to filter the content source.  
+7. These notes are for anyone who comes along in the future. 
+
+
 # Setup a new Outbound Feeds repo
 
 This is a fusion themes based repository and is intended to be used as the starting point for using _Arc Outboundfeeds_. It doesn't matter if a client is currently using themes or not. This repo will be used to run Outbound feeds in its own dedicated environment.
