@@ -21,14 +21,9 @@ const { fragment } = require('xmlbuilder2')
  * @returns {int} - 1 if the value is in the array, 0 if it is not
  */
 
-const filterElementArrayBySlug = function(element=[]) {
-    return function(key, value) {
-        let hasPushAlertTag = element.filter(el => el?.[key] === value)
-       if (typeof hasPushAlertTag !== "undefined" && hasPushAlertTag.length > 0) {
-        return 1
-       }
-       return 0
-
+const filterElementArrayBySlug = function(element = []) {
+    return function(key = '', value = '') {
+        return element.filter(el => el?.[key] === value)?.length > 0 ? 1 : 0
     }
 }
 
@@ -152,13 +147,13 @@ const rssTemplate = (
                 // hack for push alerts
                 //
                 // push alerts are just the 'push-alert' tag assigned to the article.  
-            // we filter for that tag, and if the filtered array length is greater than 0
-            // we set the push alert tag in xml
+                // we filter for that tag, and if the filtered array length is greater than 0
+                // we set the push alert tag in xml
 
                 let filterTags = filterElementArrayBySlug(s?.taxonomy?.tags)
 
 
-                
+
 
 
                 return {
@@ -217,7 +212,7 @@ const rssTemplate = (
                     ...(includePromo && img && img.length < 2 && { '#2': img }),
                     // ...(s?.promo_items?.lead_art?.type==='video' && { lead_video_embed: { $: s.promo_items.lead_art.embed_html }}),
                     ...(s?.promo_items?.lead_art?.type === 'video' && { lead_video_id: s.promo_items.lead_art._id }),
-                    pugpig_post_allow_automated_push: filterTags('slug','push-alert').toString()
+                    pugpig_post_allow_automated_push: filterTags('slug', 'push-alert').toString()
                 }
             }),
         },
