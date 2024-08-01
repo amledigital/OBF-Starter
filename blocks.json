@@ -30,7 +30,7 @@
     "default": {
       "siteProperties": {
         "feedDomainURL": "https://www.9and10news.com",
-        "resizerURL": "https://910mediagroup-910news-prod.web.arc-cdn.net/resizer/v2",
+        "resizerURL": "https://910mediagroup-910news-sandbox.web.arc-cdn.net/resizer/v2",
         "feedTitle": "9&10 News Feeds",
         "feedLanguage": "en"
       }

@@ -8,7 +8,9 @@
     - for example, the default blocks.json config needs to be set to the environment you want to deploy to e.g. sandbox to sandox, then update to deploy to prod
 6. I tried many different techniques to get automated push alerts to work.  I ended on using tags.  OBF doesn't correcty hydrate label.push_alert on the server side and I was never able to figure out how to resolve that issue.  I was able to create a work around using the canonical URL service and passing a query param flag `?allow_push=true` if that label was set to true.  But the canonical url service doesn't allow that functionality and only regards query params that are used to filter the content source.  
 7. These notes are for anyone who comes along in the future. 
-
+8. Even though the documentation says otherwise, you need to make sure the encrypted resizerKey is in your localhost.js file under the environment folder.  Else, the resizer key will work in production, but not in localhost.  
+9. Also, if you are working in localhost, it doesn't matter if you put your CONTENT_BASE and ARC_ACCESS_TOKEN in the environment localhost.js folder, you still need to have it in your .env file as well.  So what is the point of the localhost.js file?  You need to have some default boilerplate from arc there that it is looking for.
+10.  I tried to remove the "default" site settings in blocks.json, but I couldn't get it to build.  The only way I have been able to get deployments to work is manually changing the baseURL and resizerURL in the default section of blocks.json.  
 
 # Setup a new Outbound Feeds repo
 
