@@ -88,9 +88,9 @@ const fetch = async (key = {}) => {
                 // Ensure content_elements is preserved
                 // for some reason this was getting dropped from above so this is just to make sure the content elements get added back in
                 // see commented out function to compare in the future
-                if (!item.content_elements && existingContentElements) {
-                    item.content_elements = existingContentElements;
-                }
+                // if (!item.content_elements && existingContentElements) {
+                //     item.content_elements = existingContentElements;
+                // }
                 
                 collectionResp.content_elements.splice(storyIndex, 1, item);
             }
