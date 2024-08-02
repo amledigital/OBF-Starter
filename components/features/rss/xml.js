@@ -152,6 +152,8 @@ const rssTemplate = (
 
                 let filterTags = filterElementArrayBySlug(s?.taxonomy?.tags)
 
+                // console.log("includeContent", s)
+
 
 
 
