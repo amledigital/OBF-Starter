@@ -65,37 +65,7 @@ const fetch = async (key = {}) => {
         }
     };
 
-    // const sortStories = (idsResp, collectionResp, ids, site) => {
-       
-    //     idsResp.content_elements?.forEach((item) => {
-    //         const storyIndex = ids.indexOf(item._id)
-    //         // transform websites to sections
-
-    //         if (
-    //             item?.websites?.[site]?.website_section &&
-    //             !item?.taxonomy?.sections
-    //         ) {
-    //             if (!item.taxonomy) item.taxonomy = {}
-    //             item.taxonomy.sections = [item.websites[site].website_section]
-    //         }
-    //         if (item?.websites?.[site]?.website_url)
-    //             item.website_url = item.websites[site].website_url
-    //         item.website = site
-    //         collectionResp.content_elements.splice(storyIndex, 1, item);
-    //     })
-
-    //     if (excludeSubType) {
-    //         const excSubtypes = excludeSubType.split(',');
-    //         collectionResp.content_elements = collectionResp.content_elements.map((item) => {
-    //             if (!excSubtypes.includes(item.subtype)) {
-    //                 return item;
-    //             }
-    //         })
-    //         collectionResp.content_elements = collectionResp.content_elements.filter(Boolean);
-    //     }
-    //     return collectionResp
-    // }
-
+   
     const sortStories = (idsResp, collectionResp, ids, site) => {
         idsResp.data.content_elements?.forEach((item) => {
             const storyIndex = ids.indexOf(item._id);
